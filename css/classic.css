@@ -36,12 +36,13 @@ html{ /* Font variables */
 }
 
 body{
-	height:calc(100vh - 48px); /* Account for the margin set below */
-	margin:48px 0 0 0;
+	height:100vh;
+	margin:0;
 	font-family:var(--standard-font);
 	font-size:16px;
 	word-wrap:break-word; /* Prevent text from overflowing off the page */
 	overflow:hidden; /* These two will hopefully prevent Safari scrolling nonsense */
+	box-sizing:border-box;
 	touch-action:none;
 	background:radial-gradient(ellipse farthest-corner at 50% 100%,#048 10%,#001222 90%);
 	background-size:200% 100%;
@@ -67,9 +68,9 @@ rect{shape-rendering:geometricPercision;}
 @keyframes twinkle{0%,100%{opacity:1;}50%{opacity:.5;}}
 @keyframes float{0%,100%{transform:translateY(-1%);}50%{transform:translateY(1%);}}
 
-h1,ul,ol{margin:8px 0;}
-h1{font-weight:900;}
-h2{font-weight:800;}
+h1,ul,ol{margin:32px 0 0 0;}
+h1{font-weight:900;font-size:4rem;}
+h2{font-weight:800;font-size:3rem;}
 h3{font-weight:700;}
 p{margin:4px 0;}
 p:empty{display:none;}
@@ -96,117 +97,19 @@ hr{
 	background:none;
 	border:none;
 	backdrop-filter:none;
-}.coming-soon img{filter:drop-shadow(0 4px 8px #000810c0);}
-
-form{
-	width:auto; /* Layout fix */
-	margin:auto;
-	text-align:center;
+}.coming-soon img{
+	width:676px;
+	height:208px;
+	filter:drop-shadow(0 4px 8px #000810c0);
 }
-form table{width:max-content;margin:auto;text-align:left;}
-form table tr td:nth-of-type(1){font-weight:bold;} /* I don't know why it's this specific but I guess something was really not working */
-
-table{
-	border:0; /* Disable the border itself but keep its properties around for spacing */
-	border-spacing:0 4px;
-	border-radius:4px;
-	padding:0 4px;
-	width:100%;
-	text-align:left;
-	background:#0004;
-	backdrop-filter:blur(4px);
-	-webkit-backdrop-filter:blur(2px);
-}thead{
-	position:sticky;
-	top:0;
-	left:0;
-	font-weight:bold;
-	background:#000d;
-	box-shadow:0 2px 2px #000d,0 -10px 2px #000c;
-}
-td{
-	border:0;
-	padding:4px 8px;
-	white-space:nowrap;
-	background:#0004;
-}td.zero-width{width:0;} /* Zero-width <td> to compact the amount of space the "Edit" button cell uses */
-
-#topBar{
-	display:flex;
-	position:fixed;
-	top:0;
-	left:0;
-	width:calc(100% - 8px);
-	height:48px;
-	padding:0 4px;
-	justify-content:space-between;
-	background:linear-gradient(#048c,#024c 50%,#001222cc);
-	background-size:auto 96px;
-	box-shadow:0 2px 2px #000810;
-	backdrop-filter:blur(2px);
-	-webkit-backdrop-filter:blur(1px);
-	animation:topPulse 5s ease-in-out infinite alternate;
-	z-index:1;
-}@keyframes topPulse{from{background-position-y:top;}to{background-position-y:bottom;}}
-#topBar button{
-	height:100%;
-	font-size:16px;
-	margin:0 2px 0 0;
-	border:0;
-	border-radius:0;
-	padding:0 6px;
-	flex-shrink:0;
-	background:#0001;
-	color:#f0f0f0;
-	box-shadow:inset 0 6px 2px -4px #f0f0f032,inset 0 -6px 2px -4px #0008;
-	text-shadow:0 -1px #000810;
-}
-#topBar button:hover,#topBar button:focus-visible{transform:none;background:linear-gradient(#f0f0f025 25%,#f0f0f015 90%);}
-#topBar button:active{transform:none;background:linear-gradient(#024,#001222);}
-.top-separator{
-	width:2px;
-	height:100%;
-	margin:0 4px;
-	flex-shrink:0;
-	background:linear-gradient(90deg,#001222 40%,#0064c8 65%);
-	opacity:.5;
-}
-#topBar > .top-separator:nth-of-type(2){margin-left:-2px;}
-.empty-space{width:100%;flex-shrink:9999;}
-.top-logo{
-	display:flex;
-	position:fixed;
-	left:50%;
-	height:inherit;
-	transform:translate(-50%);
-}#logoLink{display:flex;} /* This is probably a hack but whatever */
-#logoLink img{
-	height:29px;
-	margin:auto;
-	filter:drop-shadow(0 -1px #000810);
-	cursor:pointer;
-	transition:filter 0.2s ease-out;
-}#logoLink img:hover,#logoLink img:focus-visible{filter:drop-shadow(0 0 4px #f0f0f0f0);outline:none;}
-#logoLink img:active{filter:drop-shadow(0 -2px #001222);}
-
-.top-bar-buttons{color:#f0f0f0a0;}
-.top-bar-buttons,.account-container{
-	flex-shrink:.2;
-	white-space:nowrap;
-	overflow:auto;
-	scrollbar-width:thin;
-}
-.account-container .username{font-weight:bold;}
-.account-container #logout{margin-left:-2px;margin-right:0;}
 
 main{ /* Padding around main content area */
 	display:flex;
 	width:100%;
-	height:calc(100vh - 48px);
+	height:100%;
 	box-sizing:border-box;
 	justify-content:space-between;
 	padding:8px;
-	padding-bottom:4px;
 }
 section,output{ /* Main content area */
 	display:flex;
@@ -226,243 +129,9 @@ section,output{ /* Main content area */
 	-webkit-backdrop-filter:blur(2px);
 }
 
-button,input,textarea,select{ /* Pretty much all types of input field or method */
-	font-family:var(--standard-font);
-	font-size:1rem; /* Prevent annoying page zoom on iOS Safari, improves readability */
-	margin:2px;
-	border:2px solid #001222;
-	border-radius:6px;
-	padding:2px 4px;
-	background:#00448880;
-	backdrop-filter:blur(4px);
-	-webkit-backdrop-filter:blur(2px);
-	color:#f0f0f0;
-	accent-color:#0064c8;
-	text-shadow:0 -1px #000810;
-	box-shadow:0 2px 2px #0008;
-}
-button,input[type='submit'],input[type='button'],input[type='reset']{ /* Buttons in particular */
-	width:max-content;
-	border:2px solid #024;
-	background:linear-gradient(#0064c8cc,#048c,#024c,#001222cc) #0000;
-	background-size:auto 200%;
-	background-position-y:50%;
-	box-shadow:inset 0 -2px 2px #0004,inset 0 1.5px 2px #f0f0f048,0 2px 2px #0008;
-	transition-property:transform,font-weight,background-position-y,box-shadow,text-shadow;
-	transition-duration:.1s;
-	cursor:pointer;
-}td > button{width:36px;margin:0;}
-button#newClient{position:sticky;bottom:0;}
-button:hover,
-button:focus-visible,
-input[type='submit']:hover,
-input[type='submit']:focus-visible,
-input[type='reset']:hover,
-input[type='reset']:focus-visible{ /* Buttons that are hovered over or otherwise focused */
-	transform:translateY(-1px);
-	font-weight:bold;
-	outline:0;
-	background-position-y:0%;
-	box-shadow:inset 0 -2px 2px #0004,inset 0 2px 2px #f0f0f064,0 4px 2px #0006;
-	text-shadow:0 -1px .5px #000810;
-}
-button:active,
-input[type='submit']:active,
-input[type='reset']:active{ /* Buttons being actively clicked */
-	transform:translateY(1px);
-	font-weight:900!important;
-	background-position-y:100%;
-	box-shadow:inset 0 -2px 2px #0008,inset 0 1px 2px #f0f0f016,0 1px 2px #000a;
-}
-
-button.accept, /* The above styles, just for buttons of different types */
-input.accept[type='submit'],
-input.accept[type='button']{
-	border-color:#002212!important;
-	background-image:linear-gradient(#00c864dd,#084d,#042d,#002212dd)!important;
-	text-shadow:0 -1px #001008!important;
-}
-button.accept:hover,
-button.accept:focus-visible,
-input.accept[type='submit']:hover,
-input.accept[type='submit']:focus-visible,
-input.accept[type='button']:hover,
-input.accept[type='button']:focus-visible{text-shadow:0 -1px .5px #001008!important;}
-
-button.danger,
-input.danger[type='submit'],
-input.danger[type='button'],
-input[type='reset']{
-	border-color:#320000!important;
-	background-image:linear-gradient(#ac0000,#a00000,#640000,#320000)!important;
-	text-shadow:0 -1px #160000!important;
-}
-button.danger:hover,
-button.danger:focus-visible,
-input.danger[type='submit']:hover,
-input.danger[type='submit']:focus-visible,
-input[type='reset']:hover,
-input[type='reset']:focus-visible{text-shadow:0 -1px .5px #160000!important;}
-
-input:not([type='submit'],[type='button'],[type='reset']),textarea{font-family:var(--monospace-font);margin:2px 4px;} /* Any input that isn't a button */
-input:not([type='submit'],[type='button'],[type='reset']):focus,textarea:focus{outline:none;border-color:#0064c8;} /* Above, just focused */
-input[disabled]{opacity:.5;}
-input::placeholder,textarea::placeholder{color:#f0f0f0;opacity:.5;}
-input:autofill{background-color:#024!important;color:#f0f0f0!important;}
-
-.login{width:fit-content;margin:auto;}
-.login-field{display:flex;justify-content:space-between;}
-
-dialog#uiAlert,#accessibilityFlyout{
-	width:320px;
-	padding:16px;
-	scrollbar-width:thin;
-	border:0;
-	border-radius:6px;
-	background:linear-gradient(#048c,#024c);
-	box-shadow:inset 0 4px 4px #fff5,
-	inset 0 -4px 4px #0008,
-	0 4px 6px #000e;
-	backdrop-filter:blur(4px);
-	-webkit-backdrop-filter:blur(2px);
-	color:#f0f0f0;
-	outline:none;
-	z-index:9999;
-}
-dialog#uiAlert{
-	display:none;
-	min-height:64px;
-	max-height:90vh;
-	flex-direction:column;
-}
-dialog#uiAlert::backdrop{
-	backdrop-filter:blur(4px);
-	-webkit-backdrop-filter:blur(2px);
-	background:#0004;
-	cursor:not-allowed;
-}
-dialog#uiAlert.flexible-width{
-	min-width:128px;
-	width:max-content;
-	max-width:calc(100vw - 48px);
-}
-dialog#uiAlert.shown{display:flex;visibility:visible;}
-
-.message-container{
-	text-align:center;
-	min-height:72px;
-	overflow-y:auto;
-	scrollbar-width:thin;
-	z-index:10000;
-}
-
-#alertIcon{
-	width:64px;
-	height:64px;
-	animation:blink 1s cubic-bezier(1,0,0,1) infinite;
-	filter:drop-shadow(0 2px 1px #000);
-	pointer-events:none;
-}@keyframes blink{0%,100%{opacity:0;}50%{opacity:1;}}
-
-#alertMsg{
-	text-align:left;
-	word-wrap:break-word;
-	padding:0 8px;
-}
-
-.alert-separator{margin:4px 0;}
-.alert-buttons{display:flex;justify-content:center;}
-.alert-button{width:max-content;font-size:16px;}
-
-.bottom-section{
-	display:flex;
-	width:100%;
-	height:24px;
-	padding:0 8px;
-	font-size:16px;
-	justify-content:space-between;
-	align-items:center;
-	white-space:nowrap;
-	overflow:auto hidden;
-	scrollbar-width:thin;
-	box-sizing:border-box;
-	color:#f0f0f0;
-	text-shadow:0 0 2px #000810, /* Create a more intense shadow */
-	0 0 2px #000810,
-	0 0 2px #000810,
-	0 0 2px #000810,
-	0 0 2px #000810;
-	opacity:.75;
-	transition:opacity .2s,text-shadow .2s;
-	z-index:9999;
-}.bottom-section:hover,.bottom-section:focus-within{opacity:1;text-shadow:0 0 2px #000810,0 0 2px #000810,0 0 2px #000810;}
-#accFlyoutToggle{
-	display:flex;
-	margin:0;
-	margin-right:max(calc(1px - 1px),calc(25% - 164px)); /* That first value is a stupid workaround to get around the minifier incorrectly truncating 0px to 0 */
-	padding:0 4px;
-	width:172px;
-	height:22px;
-	font-size:14px;
-	text-align:left;
-	transition-property:transform,font-weight,background-position-y,box-shadow,text-shadow,opacity;
-	transition-duration:0.1s,0.1s,0.1s,0.1s,0.1s,0.2s;
-}#accFlyoutToggle::after{content:'▲';margin-left:auto;padding-left:8px;}
-#accFlyoutToggle.open{
-	font-weight:bold;
-	box-shadow:inset 0 -2px 2px #0008,inset 0 1px 2px #f0f0f016,0 1px 2px #000a;
-	background-position-y:100%;
-	pointer-events:none;
-}#accFlyoutToggle.open::after{content:'▼'}
-#accessibilityFlyout{
-	position:fixed;
-	bottom:48px;
-	left:24px;
-	margin:0;
-	transform:translateY(256px);
-	transition:transform 0.2s ease-out;
-	list-style:none;
-	backdrop-filter:none;
-	z-index:0;
-}#accessibilityFlyout.open{transform:translateY(0);}
-#accessibilityFlyout h1{margin:0;text-align:center;text-shadow:0 2px 1px #000810;}
-.bottom-section label{
-	display:flex;
-	min-width:fit-content;
-	width:25%;
-	text-align:center;
-	align-items:center;
-	justify-content:right;
-	cursor:pointer;
-	transition:font-weight .1s;
-}.bottom-section label:hover,.bottom-section label:focus-within{font-weight:500;}
-.bottom-section label.disabled:hover,.bottom-section label.disabled:focus-within{font-weight:revert;}
-.bottom-section select{cursor:pointer;}
-.bottom-section p{margin:auto;}
-.bottom-section p::before,.bottom-section p::after{content:' - ';display:none;}
-.bottom-section p::before{margin-left:4px;}
-.bottom-section p::after{margin-right:4px;}
-.bottom-section input[type='checkbox']{
-	width:16px!important;
-	height:16px!important;
-	margin:0 4px 0 0;
-}
-.bottom-section select{
-	margin:0 0 0 4px;
-	padding:0 4px;
-	height:22px;
-	font-size:13px;
-	background:#048;
-	color:#f0f0f0;
-}
-
 /* Various media queries and stuff */
 @media(max-width:760px){
-	.top-logo,.you-are{display:none;} /* Disable logo on screen sizes less than 760px, except on the login page */
-	.top-logo.login{display:flex;}
-	main{flex-direction:column;} /* Ensure sections stack vertically in mobile mode... not like the multi-section functionality is ever used though :P */
 	section{width:auto;height:100%;align-items:revert;}
-	.bottom-section p::before,.bottom-section p::after{display:initial;}
 }
 /* Rodents */
 @media(pointer:fine){input[type="checkbox"]{width:17px;height:17px;}}
