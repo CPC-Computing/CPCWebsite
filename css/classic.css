@@ -87,6 +87,7 @@ hr{
 
 .fade-in{
 	margin:0;
+	max-width:80vw;
 	animation:fade-in 1s forwards;
 	animation-delay:1s;
 	opacity:0;
@@ -100,6 +101,7 @@ hr{
 	backdrop-filter:none;
 }.coming-soon img{
 	width:676px;
+	max-width:80vw;
 	height:208px;
 	filter:drop-shadow(0 4px 8px #000810c0);
 }
@@ -131,9 +133,6 @@ section,output{ /* Main content area */
 }
 
 /* Various media queries and stuff */
-@media(max-width:760px){
-	section{width:auto;height:100%;align-items:revert;}
-}
 /* Rodents */
 @media(pointer:fine){input[type="checkbox"]{width:17px;height:17px;}}
 /* Touch-based devices */
