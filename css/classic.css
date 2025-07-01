@@ -88,9 +88,10 @@ hr{
 .fade-in{
 	margin:0;
 	animation:fade-in 1s forwards;
-	animation-delay:5s;
+	animation-delay:1s;
 	opacity:0;
-}@keyframes fade-in{0%{opacity:0;}100%{opacity:0.8;}}
+}.fade-in.text{animation-delay:5s;}
+@keyframes fade-in{0%{opacity:0;}100%{opacity:0.8;}}
 
 .coming-soon{
 	justify-content:center;
